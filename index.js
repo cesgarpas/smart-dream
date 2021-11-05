@@ -1,5 +1,16 @@
 'use strict';
 
+// Firebase init
+const admin = require("firebase-admin");
+var serviceAccount = require("./smart-dream-cesgarpas-firebase-adminsdk-w1qmp-60d1b488a1");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+
+
+
 var fs = require('fs'),
     http = require('http'),
     path = require('path');
