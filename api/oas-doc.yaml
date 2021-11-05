@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Product list
+  description: >-
+    This is an OpenAPI Specification created by oas-wizard
+    (https://github.com/pafmon/oas-wizard)  
+  contact:
+    name: PabloFM
+    email: pablofm@us.es
+    url: 'http://www.isa.us.es'
+  license:
+    name: MIT
+    url: 'http://opensource.org/licenses/MIT'
+paths:
+  /api/v1/products:
+    get:
+      description: Returns all products
+      operationId: getProducts
+      responses:
+        '200':
+          description: Product List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+    post:
+      description: Creates a new product
+      operationId: addProduct
+      responses:
+        '201':
+          description: product created
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+      requestBody:
+        x-name: product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+        description: Product to be created
+        required: true
+  '/api/v1/products/{id}':
+    get:
+      description: Returns a product by id
+      operationId: findProductByid
+      parameters:
+        - name: id
+          in: path
+          description: id of product to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+    delete:
+      description: deletes a single product based on the id
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: product deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+    put:
+      description: Update a product based on its id
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          description: ID of product to put
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: product updated
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+      requestBody:
+        x-name: product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+        description: Product to be updated
+        required: true
+components:
+  schemas:
+    errorModel:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    product:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        id:
+          type: number
+        description:
+          type: string
+          minLength: 1
+        brand:
+          type: string
+          minLength: 1
+        price:
+          type: number
+      required:
+        - name
+        - id
+        - description
+        - brand
+        - price
