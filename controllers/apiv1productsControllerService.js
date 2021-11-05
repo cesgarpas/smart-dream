@@ -2,10 +2,10 @@
 
 const firestore = require('firebase-admin').firestore();
 
-module.exports.getProducts = async function getProducts(req, res, next) {
+module.exports.getProducts = async function getProducts (req, res, next) {
   try {
-    const productsCollection = await firestore.collection("products").get();
-    const products = productsCollection.docs.map(doc => { return { ...doc.data(), id: doc.id } });
+    const productsCollection = await firestore.collection('products').get();
+    const products = productsCollection.docs.map(doc => { return { ...doc.data(), id: doc.id }; });
     res.send(products);
   } catch (error) {
     console.error(error);
@@ -15,7 +15,7 @@ module.exports.getProducts = async function getProducts(req, res, next) {
   }
 };
 
-module.exports.addProduct = async function addProduct(req, res, next) {
+module.exports.addProduct = async function addProduct (req, res, next) {
   try {
     const product = {
       name: req.product.value.name,
@@ -24,7 +24,7 @@ module.exports.addProduct = async function addProduct(req, res, next) {
       brand: req.product.value.brand
     };
 
-    const persistedProduct = await firestore.collection("products").add(product);
+    const persistedProduct = await firestore.collection('products').add(product);
 
     res.send({ ...product, id: persistedProduct.id });
   } catch (error) {
