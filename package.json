@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node index.js",
-    "test": "semistandard && jest",
+    "test": "jest",
     "lint": "semistandard",
     "lint-fix": "semistandard --fix"
   },
@@ -24,7 +24,9 @@
   },
   "devDependencies": {
     "jest": "^27.3.1",
-    "semistandard": "^16.0.1"
+    "semistandard": "^16.0.1",
+    "sinon": "^12.0.1",
+    "supertest": "^6.1.6"
   },
   "semistandard": {
     "ignore": [
