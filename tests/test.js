@@ -14,7 +14,7 @@ const testProduct = {
 describe('API working tests', () => {
     beforeAll(async () => {
         require("sinon").stub(console);
-        await server.deploy();
+        await server.deploy("test");
     })
 
     it('should answer with a 200 OK althought it has not deleted anything (DELETE /products/{id})', async() => {
@@ -75,7 +75,7 @@ describe('API working tests', () => {
 
     it('should not obtain the test product (GET /products/{id}', async() => {
         const response = await request(app).get("/api/v1/products/" + testProduct.id);
-        expect(response.body).toStrictEqual({"message": "Product not found"});
+        expect(response.body).toStrictEqual({"message": "Product not found", "code": 404});
         expect(response.statusCode).toBe(404);
 
     });

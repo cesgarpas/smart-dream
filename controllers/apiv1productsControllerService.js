@@ -10,7 +10,8 @@ module.exports.getProducts = async function getProducts (req, res, next) {
   } catch (error) {
     console.error(error);
     res.status(500).send({
-      message: 'Error getting products'
+      message: 'Error getting products',
+      code: 500
     });
   }
 };
@@ -18,10 +19,10 @@ module.exports.getProducts = async function getProducts (req, res, next) {
 module.exports.addProduct = async function addProduct (req, res, next) {
   try {
     const product = {
-      name: req.product.value.name,
-      price: req.product.value.price,
-      description: req.product.value.description,
-      brand: req.product.value.brand
+      name: req.productRequest.value.name,
+      price: req.productRequest.value.price,
+      description: req.productRequest.value.description,
+      brand: req.productRequest.value.brand
     };
 
     const persistedProduct = await firestore.collection('products').add(product);
@@ -30,7 +31,8 @@ module.exports.addProduct = async function addProduct (req, res, next) {
   } catch (error) {
     console.error(error);
     res.status(500).send({
-      message: 'Error creating product'
+      message: 'Error creating product',
+      code: 500
     });
   }
 };
