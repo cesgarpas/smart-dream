@@ -2,7 +2,7 @@ version: '2.2'
 services:
   smart-dream-api:
     container_name: smart-dream-api
-    image: cesgarpas/smart-dream-api:latest
+    image: cgpcsjcmp/smart-dream-api:latest
     environment:
       - NODE_ENV=production
       - PORT=80
