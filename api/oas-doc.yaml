@@ -3,12 +3,11 @@ info:
   version: 1.0.0
   title: Product list
   description: >-
-    This is an OpenAPI Specification created by oas-wizard
-    (https://github.com/pafmon/oas-wizard)  
+    OpenAPI specification for Smart Dream technical test
   contact:
-    name: PabloFM
-    email: pablofm@us.es
-    url: 'http://www.isa.us.es'
+    name: Céasr García Pascual
+    email: cgpcsjcmp@gmail.com
+    url: 'https://cesgarpas.github.io/cv/'
   license:
     name: MIT
     url: 'http://opensource.org/licenses/MIT'

@@ -27,7 +27,7 @@ module.exports.addProduct = async function addProduct (req, res, next) {
 
     const persistedProduct = await firestore.collection('products').add(product);
 
-    res.send({ ...product, id: persistedProduct.id });
+    res.status(201).send({ ...product, id: persistedProduct.id });
   } catch (error) {
     console.error(error);
     res.status(500).send({

@@ -6,7 +6,7 @@ const app = express();
 
 // Firebase init
 const admin = require('firebase-admin');
-const serviceAccount = require('./smart-dream-cesgarpas-firebase-adminsdk-w1qmp-60d1b488a1');
+const serviceAccount = require('./private/smart-dream-cesgarpas-firebase-adminsdk-w1qmp-60d1b488a1');
 
 const fs = require('fs');
 const path = require('path');
@@ -17,7 +17,7 @@ app.use(bodyParser.json({
 }));
 const oasTools = require('oas-tools');
 const jsyaml = require('js-yaml');
-const serverPort = 8080;
+const serverPort = process.env.PORT || 8080;
 
 const spec = fs.readFileSync(path.join(__dirname, '/api/oas-doc.yaml'), 'utf8');
 const oasDoc = jsyaml.safeLoad(spec);

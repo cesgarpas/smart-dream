@@ -10,8 +10,7 @@ const testProduct = {
     "name": "Test Product " + crypto.randomBytes(20).toString('hex'), // In case other tests failed
     "description": "Test description",
     "brand": "Test",
-    "price": 150,
-    //"id": "testProductId"
+    "price": 150
 }
 
 describe('API working tests', () => {
@@ -37,7 +36,7 @@ describe('API working tests', () => {
         testProduct.id = response.body.id;
 
         expect(response.body).toStrictEqual(testProduct);
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(201);
     });
 
     it('should obtain the test product (GET /products/{id})', async() => {
